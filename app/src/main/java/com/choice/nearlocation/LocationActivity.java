@@ -201,7 +201,7 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
     private void doSearchQuery(LatLonPoint latLonPoint) {
         mCurrentPoint = new LatLonPoint(latLonPoint.getLatitude(), latLonPoint.getLongitude());
         // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
-        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(latLonPoint.getLatitude(), latLonPoint.getLongitude()), 200, GeocodeSearch.AMAP);
+        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(latLonPoint.getLatitude(), latLonPoint.getLongitude()), 200, GeocodeSearch.GPS);
         mGeocoderSearch.getFromLocationAsyn(query);
     }
 
@@ -305,7 +305,6 @@ public class LocationActivity extends AppCompatActivity implements View.OnClickL
         @Override
         public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
             if (rCode == 1000) {
-
                 if (result != null && result.getRegeocodeAddress() != null &&
                         result.getRegeocodeAddress().getFormatAddress() != null) {
                     setAddress(result.getRegeocodeAddress());
